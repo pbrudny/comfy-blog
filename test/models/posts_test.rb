@@ -28,6 +28,15 @@ class BlogPostsTest < ActiveSupport::TestCase
     assert post.valid?
   end
 
+  def test_validation_of_slug_format
+    post = comfy_blog_blogs(:default).posts.new(
+      :title    => 'Test Title',
+      :slug     => 'test%slug',
+      :content  => 'Test Content'
+    )
+    assert post.valid?
+  end
+
   def test_creation
     assert_difference 'Comfy::Blog::Post.count' do
       post = comfy_blog_blogs(:default).posts.create!(

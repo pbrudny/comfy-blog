@@ -5,11 +5,11 @@ class Comfy::Blog::CommentsController < Comfy::Blog::BaseController
 
   def create
     @comment.save!
-    flash[:success] = 'Comment created'
+    flash[:success] = t('comfy.admin.blog.comments.created')
     redirect_to comfy_blog_post_path(@cms_site.path, @blog.path, @post.slug)
 
   rescue ActiveRecord::RecordInvalid
-    flash[:error] = 'Failed to create Comment'
+    flash[:error] = t('comfy.admin.blog.comments.create_failure')
     render 'comfy/blog/posts/show'
   end
 
@@ -18,7 +18,7 @@ protected
   def load_post
     @post = @blog.posts.published.where(:slug => params[:slug]).first!
   rescue ActiveRecord::RecordNotFound
-    flash[:error] = 'Blog Post not found'
+    flash[:error] = t('comfy.admin.blog.posts.not_found')
     redirect_to comfy_blog_posts_path(@cms_site.path, @blog.path)
   end
 

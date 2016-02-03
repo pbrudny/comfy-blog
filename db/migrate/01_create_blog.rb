@@ -46,8 +46,8 @@ class CreateBlog < ActiveRecord::Migration
 
   def self.down
     drop_table :comfy_blogs
-    drop_table :comfy_posts
-    drop_table :comfy_comments
+    drop_table :comfy_blog_posts
+    drop_table :comfy_blog_comments
   end
 
 end
